@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -60,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
         MyAdapter myAdapter = new MyAdapter(MainActivity.this, intIcon, titleStrings, detailStrings);
         travelsouth_Listview.setAdapter(myAdapter);
+
+        travelsouth_Listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+
+                intent.putExtra("Title", titleStrings[i]);
+                intent.putExtra("Image", intIcon[i]);
+                intent.putExtra("Index", i);
+
+                startActivity(intent);
+            }
+        });
 
 
     }//create list view
